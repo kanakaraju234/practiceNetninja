@@ -1,29 +1,13 @@
-import React, { Component } from 'react';
-import { ThemeContext } from './Contexts/ThemeContext';
+import React, { useContext } from 'react';
+import { BookContext } from '../Contexts/BookContext';
 
-class Navbar extends Component {
-   
-    render(){
-       
-          return(
-            <ThemeContext.Consumer>
-                {(context) => {
-                    const { islightTheme, light, dark } = context;
-                    const theme = islightTheme ? light: dark;
-                    return(
-                        <nav style={{background: theme.ui, color:theme.syntax}}>
-                        <h1>Context App</h1>
-                        <ul>
-                            <li>Home</li>
-                            <li>About</li>
-                            <li>Contact</li>
-                        </ul>
-                    </nav>
-                    )
-                }}
-            </ThemeContext.Consumer>
-           
-        );
-    }
+const Navbar =()=>{
+    const {books} = useContext(BookContext);
+    return (
+        <div className="navbar">
+            <h1>Ninja Reading List</h1>
+            <p>Currently you have { books.length } books to get through...</p>
+        </div>
+    )
 }
 export default Navbar;
